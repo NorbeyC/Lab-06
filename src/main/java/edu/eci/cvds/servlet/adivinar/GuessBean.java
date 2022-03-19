@@ -1,5 +1,6 @@
 package edu.eci.cvds.servlet.adivinar;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
@@ -10,23 +11,24 @@ import java.util.Random;
 
 @ManagedBean(name = "guessBean")
 @ApplicationScoped
+//@SessionScoped
 public class GuessBean {
+	private int numberWin;
     private int numIntentos = 1;
     private boolean gameState;
     private int premio = 100000;
-    private int numberGuessing;
     private ArrayList<IntentoAdivinar> intentos;
     private String error = "";
 
     public GuessBean() {
-        error = "Ha cargado";
+        error = "Bienvenido";
         intentos = new ArrayList<>();
         loadNumber();
     }
 
     public void loadNumber(){
         Random r = new Random();
-        numberGuessing = r.nextInt(100);
+        numberWin = r.nextInt(10);
     }
 
     public String getError() {
@@ -34,11 +36,11 @@ public class GuessBean {
     }
 
     public int getNumberGuessing() {
-        return numberGuessing;
+        return numberWin;
     }
 
     public void setNumberGuessing(int numberGuessing) {
-        this.numberGuessing = numberGuessing;
+        this.numberWin = numberGuessing;
     }
 
     public void setError(String error) {
@@ -48,9 +50,12 @@ public class GuessBean {
     public void intento(String number){
         try {
             int numero = Integer.parseInt(number);
-            if (!gameState) intentos.add(new IntentoAdivinar(numIntentos,numero));
-            numIntentos++;
-            checkState(numero);
+            if (!gameState) {
+            	intentos.add(new IntentoAdivinar(numIntentos,numero));
+            	numIntentos++;
+                checkState(numero);
+            }
+            
         }
         catch (Exception e){
             error = e.getMessage();
@@ -74,7 +79,7 @@ public class GuessBean {
     }
 
     public void checkState(int check) throws GuessBeanException{
-        if(numberGuessing == check){
+        if(numberWin == check){
             gameState = true;
             throw new GuessBeanException(GuessBeanException.winningGame);
         }

@@ -7,36 +7,59 @@
 
 <h:head>
     <title>Adivinar</title>
-    <link rel="stylesheet" href="design.css"/>
+    <link rel="stylesheet" href="guess_style.css"/>
 </h:head>
 <h:body>
-    <h:form id="guess_form">
-        
-        <h:panelGrid columns="2">
-            <p:outputLabel class="invisible" value="Numero:"/>
-            <p:outputLabel class="invisible" value="#{guessBean.numberGuessing}"/>
-            <p:outputLabel value="No. de intentos:"/>
-            <p:outputLabel value="#{guessBean.numIntentos}"/>
-            <p:outputLabel value="Estado:"/>
-            <p:outputLabel value="#{guessBean.gameState}"/>
-            <p:outputLabel value="Premio"/>
-            <p:outputLabel value="#{guessBean.premio}"/>
-			<p:inputText id="lista" type="text" binding="#{input}"/>
-            <p:commandButton resetValues="true" value="Intentar" update="guess_form" actionListener="#{guessBean.intento(input.value)}"/>
-            <p:commandButton value="Reiniciar" update="guess_form" actionListener="#{guessBean.restart()}"/>
-        </h:panelGrid>
-		
-        <p:outputLabel value="Notificacion:"/>
-        <p:outputLabel value="#{guessBean.error}"/>
-        <p:dataTable var="tintentos" value="#{guessBean.intentos}">
-            <p:column headerText="# Intento">
-                <h:outputText value="#{tintentos.numberIntento}" />
-            </p:column>
+    <div id="general">
+        <h:form id="guess_form">
+        <div id="titulo">
+            <h1>Adivinar</h1>
+        </div>
 
-            <p:column headerText="Valor entrada">
-                <h:outputText value="#{tintentos.value}" />
-            </p:column>
-        </p:dataTable>
-    </h:form>
+        <div id="descripcion">
+            <p:outputLabel value=" Se trata de un juego en línea para adivinar un número, 
+            en el que el ganador, si atina en la primera oportunidad, recibe $100.000. Luego, 
+            por cada intento fallido, el premio se reduce en $10.000."/>
+        </div>
+
+        <div id="contenedor">
+            <div id="datos">
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Numero:" style="display: none;"/>
+                    <p:outputLabel value="#{guessBean.numberGuessing}" style="display: none;"/>
+
+                    <p:outputLabel value="No. de intentos:"/>
+                    <p:outputLabel value="#{guessBean.numIntentos-1}"/>
+                    <p:outputLabel value="Estado:"/>
+                    <p:outputLabel value="#{guessBean.gameState}"/>
+                    <p:outputLabel value="Premio"/>
+                    <p:outputLabel value="#{guessBean.premio}"/>
+
+                    <p:inputText id="lista" type="text" binding="#{input}"/>
+                    <p:commandButton resetValues="true" value="Intentar" update="guess_form" actionListener="#{guessBean.intento(input.value)}"/>
+                    <p:commandButton value="Reiniciar" update="guess_form" actionListener="#{guessBean.restart()}"/>
+                </h:panelGrid>
+            </div>        
+    
+            <div id="tabla">
+                <p:dataTable var="tintentos" value="#{guessBean.intentos}">
+                    <p:column headerText="# Intento">
+                        <h:outputText value="#{tintentos.numberIntento}" />
+                    </p:column>
+    
+                    <p:column headerText="Valor entrada">
+                        <h:outputText value="#{tintentos.value}" />
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </div>
+
+        <div id="notify">
+            <h1>"#{guessBean.error}"</h1>
+        </div>
+
+        </h:form>
+    </div>
+    
 </h:body>
 </html>

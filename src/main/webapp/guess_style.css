@@ -1,0 +1,62 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+
+#general{
+    margin: auto;
+    width: 1300px;
+    height: 900px;
+    background-image:  url(campus-escuelaing-dron-edifi.2e16d0ba.fill-1200x800-c100.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#titulo{
+    margin: auto;
+    width: 100px;
+    height: 60px;
+}
+
+#descripcion{
+    margin: auto;
+    width: 800px;
+    height: 100px;
+    border-radius: 1em;
+    background-color: rgba(162, 173, 169, 0.521);
+}
+
+#contenedor{
+    float: left;
+    margin: auto;
+    margin-left: 25px;
+    width: 1250px;
+    height: 400px;
+    border-radius: 1em;
+    background-color: rgba(162, 173, 169, 0.432);
+}
+
+#datos{
+    float: left;
+    margin-left: 50px;
+    margin-top: 115px;
+    width: 40%;
+    background-color: rgba(245, 247, 217, 0.747);
+    border-radius: 1em;
+}
+
+#tabla{
+    margin-right: 50px;
+    margin-top: 50px;
+    float: right;
+    width: 40%;
+    background-color: rgb(186, 199, 195);
+    border-radius: 1em;
+}
+
+#notify{
+    margin: auto;
+    width: 320px;
+    height: 50px;
+}
